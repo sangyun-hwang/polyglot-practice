@@ -13,6 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const loggedIn = true;
+
+
   return (
     <RecoilProvider>
       <ReactQueryClientProviders>
@@ -28,7 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 referrerPolicy="no-referrer"
               />
             </head>
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+              {loggedIn ? <>{children}</> : <></>}
+            </body>
           </html>
         </ThemeProvider>
       </ReactQueryClientProviders>
