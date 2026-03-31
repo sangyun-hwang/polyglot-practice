@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const loggedIn = false;
+  const loggedIn = true;
 
 
   return (

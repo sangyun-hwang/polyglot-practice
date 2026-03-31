@@ -7,7 +7,7 @@ export default function SignIn({ setView }) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="pt-10 pb-6 px-10 w-full flex flex-col items-center justify-center max-w-lg border border-gray-400 bg-white">
+      <div className="pt-10 pb-6 px-10 w-full flex flex-col items-center justify-center max-w-lg border border-gray-400 bg-white gap-2">
         <img src={"/images/inflearngram.png"} className="w-60 mb-6" />
         <Input
           value={email}
@@ -35,10 +35,10 @@ export default function SignIn({ setView }) {
       </div>
 
       <div className="py-4 w-full text-center max-w-lg border border-gray-400 bg-white">
-        아직 계정이 없으신가요?{""}
+        아직 계정이 없으신가요?{" "}
         <button
           onClick={() => setView("SIGNUP")}
-          className="ligt-blue-600 font-bold"
+          className="text-light-blue-600 font-bold"
         >
           가입하기
         </button>
