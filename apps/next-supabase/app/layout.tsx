@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/material-tailwind-theme-provider";
 import ReactQueryClientProviders from "@/config/ReactQueryClientProvider";
 import RecoilProvider from "@/config/RecoilProvider";
+import Auth from "@/components/auth";
+import MainLayout from "@/components/layouts/main-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,14 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const loggedIn = true;
+  const loggedIn = false;
 
 
   return (
     <RecoilProvider>
       <ReactQueryClientProviders>
         <ThemeProvider>
-          {/* @ts-ignore */}
           <html lang="ko">
             <head>
               <link
@@ -32,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               />
             </head>
             <body className={inter.className}>
-              {loggedIn ? <>{children}</> : <></>}
+              {loggedIn ? <MainLayout>{children}</MainLayout> : <Auth />}
             </body>
           </html>
         </ThemeProvider>

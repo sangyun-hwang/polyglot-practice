@@ -1,6 +1,6 @@
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main>
+    <main className="">
       {children}
     </main>
   )

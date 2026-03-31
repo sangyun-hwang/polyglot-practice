@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import SignUp from "./signup"
+import SignIn from "./signin"
 
 export default function Auth() {
-  const [view, setView] = useState<"SIGNUP" | "LOGIN">("SIGNUP")
+  const [view, setView] = useState<"SIGNUP" | "SIGNIN">("SIGNUP")
 
-  return <main>{view === "SIGNUP" ? <SignUp setView={setView} /> : <></>}</main>
+  return <main className="h-screen w-screen flex justify-center items-center">
+    {view === "SIGNUP" ? <SignUp setView={setView} /> : <SignIn setView={setView} />}
+  </main>
 }

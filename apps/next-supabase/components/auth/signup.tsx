@@ -25,7 +25,7 @@ export default function SignUp({ setView }) {
         />
         <Button
           onClick={() => {
-            console.log("signUp")
+            console.log("signup")
           }}
           color="light-blue"
           className="w-full text-md py-1"
@@ -35,7 +35,7 @@ export default function SignUp({ setView }) {
       </div>
 
       <div className="py-4 w-full text-center max-w-lg border border-gray-400 bg-white">
-        이미 계정이 있으신가요?{" "}
+        이미 계정이 있으신가요?{""}
         <button
           onClick={() => setView("SIGNIN")}
           className="ligt-blue-600 font-bold"
