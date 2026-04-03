@@ -1,9 +1,32 @@
+"use client";
+
+import { createBrowserSupabaseClient } from "@/utils/supabase/client";
 import { Button, Input } from "@material-tailwind/react";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
 export default function SignIn({ setView }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const supabase = createBrowserSupabaseClient();
+
+  const signInMutation = useMutation({
+    mutationFn: async () => {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (data) {
+        console.log("signin data", data)
+      }
+
+      if (error) {
+        alert(error.message);
+      }
+
+    }
+  })
 
   return (
     <div className="flex flex-col gap-4">
@@ -25,12 +48,14 @@ export default function SignIn({ setView }) {
         />
         <Button
           onClick={() => {
-            console.log("signin")
+            signInMutation.mutate();
           }}
+          loading={signInMutation.isPending}
+          disabled={signInMutation.isPending}
           color="light-blue"
           className="w-full text-md py-1"
         >
-          가입하기
+          로그인
         </Button>
       </div>
 
