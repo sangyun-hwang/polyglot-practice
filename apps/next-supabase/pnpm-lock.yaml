@@ -29,6 +29,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.37.1
         version: 5.95.2(react@18.3.1)
+      javascript-time-ago:
+        specifier: ^2.6.4
+        version: 2.6.4
       next:
         specifier: 14.2.3
         version: 14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -718,6 +721,9 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
 
+  javascript-time-ago@2.6.4:
+    resolution: {integrity: sha512-7K/Z37LuwVaxxjutUDd1pXpznufPcox0b1UYu00ksAMMlV6IsxIvduwL3kgfPxuBVF8jVj7nhrKMPDslMq94aQ==}
+
   jiti@1.21.7:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
@@ -949,6 +955,9 @@ packages:
         optional: true
       react-native:
         optional: true
+
+  relative-time-format@1.1.12:
+    resolution: {integrity: sha512-qaZBjmRIuXLfuLnzgqpFdBPa5W0euSX1tMnoMUHGPphLwJmrt8xbNiOIHrlvYOD6oNJ0M5owPCZyPibI8de5pQ==}
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -1750,6 +1759,10 @@ snapshots:
 
   is-number@7.0.0: {}
 
+  javascript-time-ago@2.6.4:
+    dependencies:
+      relative-time-format: 1.1.12
+
   jiti@1.21.7: {}
 
   js-tokens@4.0.0: {}
@@ -1958,6 +1971,8 @@ snapshots:
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
+
+  relative-time-format@1.1.12: {}
 
   resolve-from@4.0.0: {}
 
