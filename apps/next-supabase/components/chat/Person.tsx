@@ -27,7 +27,7 @@ export default function Person({
   onChatScreen = false,
   onClick = undefined,
 }: PersonProps) {
-  return <div className={`flex min-w-60 ${onClick && "cursor-pointer"} gap-4 items-center p-4 
+  return <div className={`flex w-full min-w-60 ${onClick && "cursor-pointer"} gap-4 items-center p-4 
     ${!onChatScreen && isActive && "bg-light-blue-50"} 
     ${!onChatScreen && !isActive && "bg-gray-50"} 
     ${onChatScreen && "bg-gray-50"} 
