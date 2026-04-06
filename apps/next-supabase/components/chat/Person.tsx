@@ -31,12 +31,14 @@ export default function Person({
     ${!onChatScreen && isActive && "bg-light-blue-50"} 
     ${!onChatScreen && !isActive && "bg-gray-50"} 
     ${onChatScreen && "bg-gray-50"} 
-    `}>
+    `}
+    onClick={onClick}
+  >
     <img
       src={getRandomImage(index)}
       alt={name}
       className="w-10 h-10 rounded-full"
-      onClick={onClick}
+
     />
     <div>
       <p className="text-black font-bold text-lg">{name}</p>
