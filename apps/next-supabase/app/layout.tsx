@@ -20,7 +20,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const supabase = await createServerSupabaseClient();
 
   const { data: { session } } = await supabase.auth.getSession();
-  console.log("session", session);
 
   return (
     <RecoilProvider>

@@ -4,9 +4,20 @@
 import { selectedIndexState } from "@/utils/recoil/atoms";
 import Person from "./Person";
 import { useRecoilState } from "recoil";
+import { useQuery } from "@tanstack/react-query";
+import { getAllUsers } from "@/actions/chatActions";
 
-export default function ChatPeopleList() {
+export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) {
   const [selectedIndex, setSelectedIndex] = useRecoilState(selectedIndexState);
+
+  const getAllUsersQuery = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const allUsers = await getAllUsers();
+      console.log("allUsers", allUsers);
+      return allUsers.filter((user) => user.id !== loggedInUser?.id);
+    }
+  })
 
 
   return (
