@@ -5,6 +5,12 @@ import Message from "./Message";
 import Person from "./Person";
 import { selectedIndexState } from "@/utils/recoil/atoms";
 
+const dummyMessages = [
+  { id: 1, text: "안녕하세요.", isFromMe: true },
+  { id: 2, text: "반갑습니다.", isFromMe: false },
+];
+
+
 export default function ChatScreen() {
   const selectedIndex = useRecoilValue(selectedIndexState);
 
@@ -22,12 +28,13 @@ export default function ChatScreen() {
 
     {/* 채팅 영역 */}
     <div className="w-full flex-1 flex flex-col p-4 gap-3">
-      <Message isFromMe={true} message="안녕하세요." />
-      <Message isFromMe={false} message="반갑습니다." />
-      <Message isFromMe={true} message="안녕하세요." />
-      <Message isFromMe={true} message="안녕하세요." />
-      <Message isFromMe={false} message="반갑습니다." />
-      <Message isFromMe={false} message="반갑습니다." />
+      {dummyMessages.map((message) => (
+        <Message
+          key={message.id}
+          isFromMe={message.isFromMe}
+          message={message.text}
+        />
+      ))}
     </div>
 
     {/* 채팅창 영역 */}
