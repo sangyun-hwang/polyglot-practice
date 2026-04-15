@@ -3,7 +3,7 @@
 import { useRecoilValue } from "recoil";
 import Message from "./Message";
 import Person from "./Person";
-import { selectedIndexState } from "@/utils/recoil/atoms";
+import { selectedUserIdState } from "@/utils/recoil/atoms";
 
 const dummyMessages = [
   { id: 1, text: "안녕하세요.", isFromMe: true },
@@ -12,7 +12,7 @@ const dummyMessages = [
 
 
 export default function ChatScreen() {
-  const selectedIndex = useRecoilValue(selectedIndexState);
+  const selectedIndex = useRecoilValue(selectedUserIdState);
 
 
   return selectedIndex !== null ? <div className="w-full h-screen flex flex-col">
