@@ -28,7 +28,7 @@ export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) 
           onClick={() => { setSelectedUserId(user.id) }}
           index={index}
           userId={user.id}
-          name={user.email.split("@")[0]}
+          name={user?.email ? user.email.split("@")[0] : ""}
           onlineAt={new Date().toISOString()}
           isActive={selectedUserId === user.id}
           onChatScreen={false}

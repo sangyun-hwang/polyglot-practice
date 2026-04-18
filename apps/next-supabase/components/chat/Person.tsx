@@ -9,7 +9,7 @@ TimeAgo.addDefaultLocale(ko);
 const timeAgo = new TimeAgo("ko-KR");
 
 interface PersonProps {
-  index: number;
+  index: string | number;
   userId: string;
   name: string;
   onlineAt: string;

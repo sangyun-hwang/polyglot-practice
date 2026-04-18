@@ -5,7 +5,7 @@ export const searchState = atom({
   default: "",
 })
 
-export const selectedUserIdState = atom({
+export const selectedUserIdState = atom<string | null>({
   key: "selectedUserIdState",
   default: null,
 })
