@@ -15,7 +15,6 @@ export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) 
     queryKey: ["users"],
     queryFn: async () => {
       const allUsers = await getAllUsers();
-      console.log("allUsers", allUsers);
       return allUsers.filter((user) => user.id !== loggedInUser?.id);
     }
   })
@@ -32,6 +31,7 @@ export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) 
           onlineAt={new Date().toISOString()}
           isActive={selectedUserId === user.id}
           onChatScreen={false}
+          key={index}
         />
       ))}
       {/* <Person
