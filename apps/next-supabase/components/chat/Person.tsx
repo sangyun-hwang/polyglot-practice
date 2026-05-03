@@ -10,8 +10,8 @@ const timeAgo = new TimeAgo("ko-KR");
 
 interface PersonProps {
   index: string | number;
-  userId: string;
-  name: string;
+  userId: string | undefined;
+  name: string | undefined;
   onlineAt: string;
   isActive: boolean;
   onChatScreen: boolean;

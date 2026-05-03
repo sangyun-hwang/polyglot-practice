@@ -11,3 +11,13 @@ export async function getAllUsers() {
 
   return data.users;
 }
+export async function getUserById(userId: any) {
+  const supabase = await createServerSupabaseAdminClient();
+  const { data, error } = await supabase.auth.admin.getUserById(userId);
+
+  if (error) {
+    return null;
+  }
+
+  return data.user;
+}

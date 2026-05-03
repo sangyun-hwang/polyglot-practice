@@ -3,27 +3,34 @@
 import { useRecoilValue } from "recoil";
 import Message from "./Message";
 import Person from "./Person";
-import { selectedUserIdState } from "@/utils/recoil/atoms";
+import { selectedUserIdState, selectedUserIndexState } from "@/utils/recoil/atoms";
+import { useQuery } from "@tanstack/react-query";
+import { getUserById } from "@/actions/chatActions";
+
 
 const dummyMessages = [
   { id: 1, text: "안녕하세요.", isFromMe: true },
   { id: 2, text: "반갑습니다.", isFromMe: false },
 ];
 
-
 export default function ChatScreen() {
-  const selectedIndex = useRecoilValue(selectedUserIdState);
+  const selectedUserId = useRecoilValue(selectedUserIdState);
+  const selectedUserIndex = useRecoilValue(selectedUserIndexState);
+  const selectedUserQuery = useQuery({
+    queryKey: ["user", selectedUserId],
+    queryFn: () => getUserById(selectedUserId), // getUserById는 실제 API 호출 함수로 대체해야 합니다.
+  })
 
 
-  return selectedIndex !== null ? <div className="w-full h-screen flex flex-col">
+  return selectedUserQuery.data !== null ? <div className="w-full h-screen flex flex-col">
     {/* Active 유저 영역 */}
     <Person
-      index={selectedIndex}
-      userId="1"
-      name="John Doe"
-      onlineAt={new Date().toISOString()}
+      index={selectedUserIndex}
       isActive={false}
+      name={selectedUserQuery.data?.email?.split("@")[0]}
       onChatScreen={true}
+      onlineAt={new Date().toISOString()}
+      userId={selectedUserQuery.data?.id}
     />
 
     {/* 채팅 영역 */}
