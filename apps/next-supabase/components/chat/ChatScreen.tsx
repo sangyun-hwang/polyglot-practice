@@ -10,6 +10,10 @@ import { getUserById } from "@/actions/chatActions";
 
 const dummyMessages = [
   { id: 1, text: "안녕하세요.", isFromMe: true },
+  { id: 1, text: "안녕하세요.", isFromMe: true },
+  { id: 2, text: "반갑습니다.", isFromMe: false },
+  { id: 2, text: "반갑습니다.", isFromMe: false },
+  { id: 1, text: "안녕하세요.", isFromMe: true },
   { id: 2, text: "반갑습니다.", isFromMe: false },
 ];
 
@@ -34,7 +38,7 @@ export default function ChatScreen() {
     />
 
     {/* 채팅 영역 */}
-    <div className="w-full flex-1 flex flex-col p-4 gap-3">
+    <div className="w-full overflow-y-scroll flex-1 flex flex-col p-4 gap-3">
       {dummyMessages.map((message) => (
         <Message
           key={message.id}
