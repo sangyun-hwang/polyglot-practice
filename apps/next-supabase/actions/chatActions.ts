@@ -25,6 +25,9 @@ export async function getUserById(userId: any) {
 export async function sendMessage({
   message,
   chatUserId
+}: {
+  message: string;
+  chatUserId: string | null;
 }) {
   const supabase = await createServerSupabaseClient();
 
@@ -54,7 +57,7 @@ export async function sendMessage({
   return data;
 }
 
-export async function getAllMessages({ chatUserId }) {
+export async function getAllMessages({ chatUserId }: { chatUserId: string | null }) {
   const supabase = await createServerSupabaseClient();
   const {
     data: { session },

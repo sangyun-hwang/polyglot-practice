@@ -10,15 +10,6 @@ import { useEffect, useState } from "react";
 import { createBrowserSupabaseClient } from "@/utils/supabase/client";
 
 
-const dummyMessages = [
-  { id: 1, text: "안녕하세요.", isFromMe: true },
-  { id: 1, text: "안녕하세요.", isFromMe: true },
-  { id: 2, text: "반갑습니다.", isFromMe: false },
-  { id: 2, text: "반갑습니다.", isFromMe: false },
-  { id: 1, text: "안녕하세요.", isFromMe: true },
-  { id: 2, text: "반갑습니다.", isFromMe: false },
-];
-
 export default function ChatScreen() {
   const selectedUserId = useRecoilValue(selectedUserIdState);
   const selectedUserIndex = useRecoilValue(selectedUserIndexState);
@@ -28,7 +19,7 @@ export default function ChatScreen() {
 
   const selectedUserQuery = useQuery({
     queryKey: ["user", selectedUserId],
-    queryFn: () => getUserById(selectedUserId), // getUserById는 실제 API 호출 함수로 대체해야 합니다.
+    queryFn: () => getUserById(selectedUserId),
   })
 
   const sendMessageMutation = useMutation({
