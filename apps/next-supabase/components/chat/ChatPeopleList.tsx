@@ -1,15 +1,18 @@
 "use client";
 
 
-import { selectedUserIdState, selectedUserIndexState } from "@/utils/recoil/atoms";
+import { presenceState, selectedUserIdState, selectedUserIndexState } from "@/utils/recoil/atoms";
 import Person from "./Person";
 import { useRecoilState } from "recoil";
 import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "@/actions/chatActions";
+import { createBrowserSupabaseClient } from "@/utils/supabase/client";
+import { useEffect } from "react";
 
 export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) {
   const [selectedUserId, setSelectedUserId] = useRecoilState(selectedUserIdState);
   const [selectedUserIndex, setSelectedUserIndex] = useRecoilState(selectedUserIndexState);
+  const [presence, setPresence] = useRecoilState(presenceState);
 
   // getAllUsers
   const getAllUsersQuery = useQuery({
@@ -19,6 +22,38 @@ export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) 
       return allUsers.filter((user) => user.id !== loggedInUser?.id);
     }
   })
+
+  const supabase = createBrowserSupabaseClient();
+
+  useEffect(() => {
+    const channel = supabase.channel("online_users", {
+      config: {
+        presence: {
+          key: loggedInUser.id,
+        },
+      },
+    });
+
+    channel.on("presence", { event: "sync" }, () => {
+      const newState = channel.presenceState();
+      const newStateObj = JSON.parse(JSON.stringify(newState));
+      setPresence(newStateObj);
+    });
+
+    channel.subscribe(async (status) => {
+      if (status !== "SUBSCRIBED") {
+        return;
+      }
+
+      const newPresenceStatus = await channel.track({
+        onlineAt: new Date().toISOString(),
+      });
+    });
+
+    return () => {
+      channel.unsubscribe();
+    };
+  }, []);
 
 
   return (
@@ -32,7 +67,7 @@ export default function ChatPeopleList({ loggedInUser }: { loggedInUser: any }) 
           index={index}
           userId={user.id}
           name={user?.email ? user.email.split("@")[0] : ""}
-          onlineAt={new Date().toISOString()}
+          onlineAt={presence?.[user.id]?.[0]?.onlineAt}
           isActive={selectedUserId === user.id}
           onChatScreen={false}
           key={index}
